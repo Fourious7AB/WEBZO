@@ -1,0 +1,211 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+html,
+body,
+#root {
+  width: 100%;
+  overflow-x: hidden;
+}
+@layer base {
+  :root {
+    --nav-h: 72px;
+  }
+
+  * {
+    border-color: rgba(148, 163, 184, 0.12);
+  }
+
+  html {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--nav-h) + 16px);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    background-color: #050816;
+    color: #ffffff;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Visible, on-brand keyboard focus everywhere. */
+  :focus-visible {
+    outline: 2px solid #60a5fa;
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  ::selection {
+    background: rgba(59, 130, 246, 0.35);
+    color: #fff;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #050816;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1e293b;
+    border-radius: 999px;
+    border: 2px solid #050816;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #334155;
+  }
+
+  /* Native date/time pickers need a light icon on dark surfaces. */
+  input[type='date']::-webkit-calendar-picker-indicator,
+  input[type='time']::-webkit-calendar-picker-indicator {
+    filter: invert(1) opacity(0.55);
+    cursor: pointer;
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply font-mono text-[11px] font-semibold uppercase tracking-wider sm:tracking-widest text-glow-soft;
+  }
+
+  .glass {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.055) 0%,
+      rgba(255, 255, 255, 0.018) 100%
+    );
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(148, 163, 184, 0.14);
+  }
+
+  /* Gradient hairline that only lights up on hover/focus. */
+  .glow-border {
+    position: relative;
+    isolation: isolate;
+  }
+  .glow-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(140deg, #3b82f6, #8b5cf6 55%, transparent 80%);
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .glow-border:hover::before,
+  .glow-border:focus-within::before {
+    opacity: 1;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-br from-white via-slate-200 to-slate-400 bg-clip-text text-transparent;
+  }
+
+  .text-gradient-brand {
+    background: linear-gradient(120deg, #60a5fa 0%, #a78bfa 55%, #60a5fa 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .section-pad {
+    @apply py-24 md:py-32;
+  }
+}
+
+@layer utilities {
+  .mask-lamp-top {
+    -webkit-mask-image: linear-gradient(to top, white, transparent);
+    mask-image: linear-gradient(to top, white, transparent);
+  }
+  .mask-lamp-right {
+    -webkit-mask-image: linear-gradient(to right, white, transparent);
+    mask-image: linear-gradient(to right, white, transparent);
+  }
+  .mask-lamp-left {
+    -webkit-mask-image: linear-gradient(to left, white, transparent);
+    mask-image: linear-gradient(to left, white, transparent);
+  }
+  .mask-fade-b {
+    -webkit-mask-image: linear-gradient(to bottom, #000 60%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 60%, transparent 100%);
+  }
+  .mask-fade-x {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 12%,
+      #000 88%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 12%,
+      #000 88%,
+      transparent
+    );
+  }
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+  .smooth-gpu {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+  .will-change-transform {
+    will-change: transform;
+  }
+}
+
+/* Honour the OS-level motion preference across the whole site. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
