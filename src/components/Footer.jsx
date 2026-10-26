@@ -132,10 +132,6 @@ export default function Footer({ onBookDemo }) {
             {/* Compact Executive WhatsApp & Demo CTA Box */}
             <div className="glass mt-5 rounded-xl p-3.5 sm:p-4 border border-white/10 bg-white/[0.02] backdrop-blur-sm transition-colors hover:border-glow/40">
               <div className="flex items-center gap-2">
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
-                </span>
                 <p className="text-xs font-semibold text-white tracking-tight">Have a project in mind?</p>
               </div>
               <p className="text-2xs text-slate-400 mt-1 leading-normal">
@@ -250,7 +246,7 @@ export default function Footer({ onBookDemo }) {
                   </div>
                   <div>
                     <div className="flex items-center gap-1.5">
-                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      <span className="h-1.5 w-1.5 rounded-full bg-slate-400" />
                       <span className="font-medium text-slate-200">{site.hours}</span>
                     </div>
                     <span className="block text-2xs text-slate-500">Business hours</span>

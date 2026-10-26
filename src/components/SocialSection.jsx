@@ -50,11 +50,11 @@ export default function SocialSection() {
           {/* Left Column: Heading, Narrative, Action Buttons */}
           <div className="lg:col-span-7 flex flex-col items-start">
             <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="flex flex-col items-start gap-4"
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+              className="flex flex-col items-start gap-4 will-change-transform"
             >
               {/* Eyebrow */}
               <div className="flex items-center">
@@ -83,11 +83,11 @@ export default function SocialSection() {
 
             {/* CTAs */}
             <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -24 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="mt-8 sm:mt-10 flex flex-wrap items-center gap-4"
+              transition={{ duration: 0.5, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+              className="mt-8 sm:mt-10 flex flex-wrap items-center gap-4 will-change-transform"
             >
               {ctaButtons.map((btn, i) => (
                 <a
@@ -110,11 +110,11 @@ export default function SocialSection() {
 
           {/* Right Column: Prominent 21st.dev Animated Stacked Social Card */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.94 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:col-span-5 flex justify-center w-full"
+            initial={{ opacity: 0, x: 40, scale: 0.96 }}
+            whileInView={{ opacity: 1, x: 0, scale: 1 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-5 flex justify-center w-full will-change-transform"
           >
             <StackedSocialCard cardConfig={card} />
           </motion.div>

@@ -9,10 +9,15 @@ import { cn, scrollToId } from '@/lib/utils'
  */
 export default function Work() {
   return (
-    <section id="work" className="relative z-10 border-b border-white/5 py-16 md:py-20">
+    <section id="work" className="relative z-10 border-b border-white/5 py-16 md:py-20 overflow-hidden">
       <div className="container">
         <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-          <div>
+          <motion.div
+            initial={{ opacity: 0, x: -28 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-30px' }}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          >
             <span className="eyebrow inline-flex items-center gap-2">
               <span className="h-px w-6 bg-gradient-to-r from-transparent to-glow" />
               Recent work
@@ -20,27 +25,31 @@ export default function Work() {
             <h2 className="text-gradient mt-4 max-w-xl text-2xl font-bold sm:font-semibold leading-[1.2] sm:leading-tight tracking-tight sm:text-3xl md:text-4xl">
               Small budgets. Real results.
             </h2>
-          </div>
+          </motion.div>
 
-          <button
+          <motion.button
             type="button"
+            initial={{ opacity: 0, x: 28 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-30px' }}
+            transition={{ duration: 0.55, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             onClick={() => scrollToId('contact')}
             className="group inline-flex items-center gap-2 self-start text-xs sm:text-sm text-slate-400 transition-colors hover:text-white md:self-auto"
           >
             Ask about a project like yours
             <ArrowUpRight className="h-4 w-4 transition-transform duration-300 ease-premium group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </button>
+          </motion.button>
         </div>
 
         <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3" style={{ perspective: 1000 }}>
           {work.map((item, i) => (
             <motion.li
               key={item.client}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-20px' }}
-              transition={{ duration: 0.55, delay: i * 0.07, ease: [0.22, 1, 0.36, 1] }}
-              className="glass glow-border group relative overflow-hidden rounded-2xl p-6 transition-transform duration-500 ease-premium hover:-translate-y-1 transform-gpu"
+              initial={{ opacity: 0, x: i % 2 === 0 ? -36 : 36 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: '-30px' }}
+              transition={{ duration: 0.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+              className="glass glow-border group relative overflow-hidden rounded-2xl p-6 transition-transform duration-500 ease-premium hover:-translate-y-1 transform-gpu will-change-transform"
             >
               <div
                 className={cn(

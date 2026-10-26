@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils'
 
 export default function Pricing({ onBookDemo }) {
   return (
-    <section id="pricing" className="relative z-10 pt-20 sm:pt-24 md:pt-28 pb-14 sm:pb-16 md:pb-20">
+    <section id="pricing" className="relative z-10 pt-20 sm:pt-24 md:pt-28 pb-14 sm:pb-16 md:pb-20 overflow-hidden">
       <div className="container">
         <SectionHeading
           eyebrow="Pricing"
@@ -19,12 +19,22 @@ export default function Pricing({ onBookDemo }) {
           {pricing.map((plan, i) => (
             <motion.li
               key={plan.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-70px' }}
-              transition={{ duration: 0.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+              initial={
+                i === 0
+                  ? { opacity: 0, x: -36 }
+                  : i === 2
+                  ? { opacity: 0, x: 36 }
+                  : { opacity: 0, y: 32, scale: 0.96 }
+              }
+              whileInView={
+                i === 1
+                  ? { opacity: 1, y: 0, scale: 1 }
+                  : { opacity: 1, x: 0 }
+              }
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.65, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
               className={cn(
-                'glass glow-border relative flex flex-col rounded-3xl p-7 transition-transform duration-500 ease-premium hover:-translate-y-1',
+                'glass glow-border relative flex flex-col rounded-3xl p-7 transition-transform duration-500 ease-premium hover:-translate-y-1 transform-gpu will-change-transform',
                 plan.featured &&
                   'ring-1 ring-glow/40 shadow-[0_0_60px_-25px_rgba(59,130,246,0.8)] lg:-mt-4 lg:pb-9 lg:pt-9'
               )}

@@ -17,7 +17,7 @@ export default function Process({ onBookDemo }) {
   const lineScale = useTransform(scrollYProgress, [0, 1], [0, 1])
 
   return (
-    <section id="process" className="relative z-10 section-pad">
+    <section id="process" className="relative z-10 section-pad overflow-hidden">
       {/* Rocket: growth and launch, anchored to the left edge. */}
       <motion.div
         aria-hidden="true"
@@ -66,15 +66,15 @@ export default function Process({ onBookDemo }) {
               return (
                 <motion.li
                   key={step.title}
-                  initial={{ opacity: 0, y: 26 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-70px' }}
+                  initial={{ opacity: 0, x: i % 2 === 0 ? -36 : 36 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: '-50px' }}
                   transition={{
                     duration: 0.6,
                     delay: i * 0.12,
                     ease: [0.22, 1, 0.36, 1],
                   }}
-                  className="group relative flex gap-5 lg:block lg:pr-4"
+                  className="group relative flex gap-5 lg:block lg:pr-4 will-change-transform"
                 >
                   <span className="relative z-10 grid h-14 w-14 shrink-0 place-items-center rounded-full bg-surface ring-1 ring-white/10 transition-all duration-500 ease-premium group-hover:ring-glow/50 group-hover:shadow-glow">
                     <Icon className="h-5 w-5 text-glow-soft" aria-hidden="true" />

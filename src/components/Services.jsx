@@ -9,7 +9,7 @@ const icons = { Store, ShoppingBag, Target, Sparkles }
 
 export default function Services({ onBookDemo }) {
   return (
-    <section id="services" className="relative z-10 section-pad">
+    <section id="services" className="relative z-10 section-pad overflow-hidden">
       <div className="container">
         <SectionHeading
           eyebrow="What we build"
@@ -23,15 +23,15 @@ export default function Services({ onBookDemo }) {
             return (
               <motion.div
                 key={service.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-20px' }}
+                initial={{ opacity: 0, x: i % 2 === 0 ? -36 : 36 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: '-30px' }}
                 transition={{
-                  duration: 0.55,
-                  delay: i * 0.08,
+                  duration: 0.6,
+                  delay: i * 0.1,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className="h-full transform-gpu"
+                className="h-full transform-gpu will-change-transform"
               >
                 <HolographicCard className="h-full min-h-[380px]">
                   <div>

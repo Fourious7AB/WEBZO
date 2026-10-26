@@ -31,7 +31,7 @@ function Counter({ value, suffix, label, decimals = 0 }) {
 
 export default function WhyChoose() {
   return (
-    <section id="why" className="relative z-10 section-pad">
+    <section id="why" className="relative z-10 section-pad overflow-hidden">
       <div className="container">
         <SectionHeading
           eyebrow="Why WebzoLabs"
@@ -60,15 +60,15 @@ export default function WhyChoose() {
             return (
               <motion.li
                 key={reason.title}
-                initial={{ opacity: 0, y: 28, rotateX: 8 }}
-                whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+                initial={{ opacity: 0, x: i % 2 === 0 ? -36 : 36, rotateX: 6 }}
+                whileInView={{ opacity: 1, x: 0, rotateX: 0 }}
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{
-                  duration: 0.55,
+                  duration: 0.6,
                   delay: (i % 3) * 0.08,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className="glass glow-border group flex items-start gap-4 rounded-2xl p-5 transition-colors duration-500 hover:bg-white/[0.05]"
+                className="glass glow-border group flex items-start gap-4 rounded-2xl p-5 transition-colors duration-500 hover:bg-white/[0.05] will-change-transform"
               >
                 <span className="mt-0.5 grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-glow/20 to-violet-glow/20 ring-1 ring-white/10">
                   <Icon className="h-[18px] w-[18px] text-white" aria-hidden="true" />
