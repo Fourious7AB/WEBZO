@@ -15,6 +15,8 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
+          three: ['three'],
+          gsap: ['gsap'],
           motion: ['framer-motion'],
           vendor: ['react', 'react-dom'],
         },

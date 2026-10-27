@@ -11,12 +11,16 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@splinetool/loader": "^2.0.113",
+    "@splinetool/runtime": "^2.0.113",
     "clsx": "^2.1.1",
     "framer-motion": "^11.11.17",
+    "gsap": "^3.15.0",
     "lucide-react": "^0.454.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "tailwind-merge": "^2.5.4"
+    "tailwind-merge": "^2.5.4",
+    "three": "^0.186.1"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.3",

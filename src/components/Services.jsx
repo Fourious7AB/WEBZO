@@ -10,21 +10,22 @@ const icons = { Store, ShoppingBag, Target, Sparkles }
 export default function Services({ onBookDemo }) {
   return (
     <section id="services" className="relative z-10 section-pad overflow-hidden">
-      <div className="container">
+      <div className="container relative z-10">
         <SectionHeading
-          eyebrow="What we build"
-          title="Four ways we put your business online"
-          lead="Pick the one that matches where you are today. Not sure? Book a demo and we will tell you honestly which one you need — including if that is none of them."
+          eyebrow="Conversion-Engineered Solutions"
+          title="Four Revenue Engines Built to Dominate Your Market"
+          lead="Select the architecture tailored to your scaling milestone. Unsure? Claim a 20-minute strategy call and we will map your highest-leverage digital acquisition model."
         />
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {services.map((service, i) => {
             const Icon = icons[service.icon]
+            const slideX = i % 2 === 0 ? -45 : 45
             return (
               <motion.div
                 key={service.title}
-                initial={{ opacity: 0, x: i % 2 === 0 ? -36 : 36 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, x: slideX, y: 15 }}
+                whileInView={{ opacity: 1, x: 0, y: 0 }}
                 viewport={{ once: true, margin: '-30px' }}
                 transition={{
                   duration: 0.6,
@@ -38,7 +39,7 @@ export default function Services({ onBookDemo }) {
                     {/* 3D Elevated Icon Tile */}
                     <span
                       style={{ transform: 'translateZ(24px)' }}
-                      className="relative grid h-12 w-12 place-items-center rounded-xl bg-white/[0.05] ring-1 ring-white/10 transition-all duration-500 group-hover:bg-cyan-500/15 group-hover:ring-cyan-400/40"
+                      className="relative grid h-12 w-12 place-items-center rounded-xl bg-cyan-950/40 ring-1 ring-cyan-400/30 transition-all duration-500 group-hover:bg-cyan-500/20 group-hover:ring-cyan-400/60"
                     >
                       <Icon
                         className="h-5 w-5 text-cyan-300 transition-transform duration-500 ease-premium group-hover:scale-110"
@@ -62,7 +63,7 @@ export default function Services({ onBookDemo }) {
 
                   <ul
                     style={{ transform: 'translateZ(14px)' }}
-                    className="mt-6 space-y-2.5 border-t border-white/5 pt-4"
+                    className="mt-6 space-y-2.5 border-t border-white/10 pt-4"
                   >
                     {service.points.map((point) => (
                       <li key={point} className="flex items-center gap-2 text-xs sm:text-[13px] text-slate-300 font-medium">
@@ -82,11 +83,11 @@ export default function Services({ onBookDemo }) {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-12 flex flex-col items-center justify-center gap-4 text-center text-xs sm:text-sm text-slate-400 sm:flex-row"
+          className="mt-12 flex flex-col items-center justify-center gap-4 text-center text-xs sm:text-sm text-slate-400 sm:flex-row relative z-10"
         >
-          Need something that is not on this list?
+          Need a bespoke enterprise infrastructure or specialized WebGL platform?
           <Button variant="secondary" size="sm" onClick={onBookDemo}>
-            Tell us about it
+            Request Custom Architecture
           </Button>
         </motion.p>
       </div>

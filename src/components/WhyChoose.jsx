@@ -32,11 +32,11 @@ function Counter({ value, suffix, label, decimals = 0 }) {
 export default function WhyChoose() {
   return (
     <section id="why" className="relative z-10 section-pad overflow-hidden">
-      <div className="container">
+      <div className="container relative z-10">
         <SectionHeading
-          eyebrow="Why WebzoLabs"
-          title="Built for people who have a business to run"
-          lead="You should not need to learn web development to get a good website. Here is what you get instead."
+          eyebrow="The Webzo Advantage"
+          title="Engineered for Founders Who Want Explosive Growth"
+          lead="You shouldn't have to navigate slow agencies, bloated tech stacks, or broken promises. Here is our unfair acquisition advantage."
         />
 
         {/* Counters */}
@@ -46,7 +46,7 @@ export default function WhyChoose() {
           viewport={{ once: true, margin: '-40px' }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           style={{ perspective: 1000 }}
-          className="glass mx-auto mt-14 grid max-w-4xl grid-cols-2 gap-y-8 rounded-2xl px-6 py-8 sm:grid-cols-4 sm:gap-y-0"
+          className="glass mx-auto mt-14 grid max-w-4xl grid-cols-2 gap-y-8 rounded-2xl px-6 py-8 sm:grid-cols-4 sm:gap-y-0 backdrop-blur-xl bg-slate-950/70 border-white/10"
         >
           {stats.map((stat) => (
             <Counter key={stat.label} {...stat} />
@@ -68,10 +68,10 @@ export default function WhyChoose() {
                   delay: (i % 3) * 0.08,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className="glass glow-border group flex items-start gap-4 rounded-2xl p-5 transition-colors duration-500 hover:bg-white/[0.05] will-change-transform"
+                className="glass glow-border group flex items-start gap-4 rounded-2xl p-5 transition-all duration-500 hover:bg-white/[0.05] hover:border-cyan-400/30 transform-gpu will-change-transform backdrop-blur-xl bg-slate-950/60 border-white/10"
               >
-                <span className="mt-0.5 grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-glow/20 to-violet-glow/20 ring-1 ring-white/10">
-                  <Icon className="h-[18px] w-[18px] text-white" aria-hidden="true" />
+                <span className="mt-0.5 grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-cyan-950/50 ring-1 ring-cyan-400/30 group-hover:ring-cyan-400/60">
+                  <Icon className="h-[18px] w-[18px] text-cyan-300" aria-hidden="true" />
                 </span>
                 <div>
                   <h3 className="text-sm sm:text-[15px] font-semibold tracking-tight text-white">

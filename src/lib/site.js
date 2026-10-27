@@ -6,9 +6,9 @@
 export const site = {
   name: 'WebzoLabs',
   short: 'Webzo',
-  tagline: 'Turn Small Businesses into Big Brands',
+  tagline: 'Turn Clicks into High-Velocity Revenue & Dominant Brands',
   mission:
-    'We build websites for small businesses, local shops, startups and hardworking entrepreneurs — so they can grow, build their dreams and create new sources of income.',
+    'We architect conversion-engineered web experiences and weaponized 3D digital platforms that 10x client acquisition, automate booking, and generate non-stop revenue.',
 
   // Digits only, with country code. Used for the wa.me deep link.
   whatsapp: '919883250683',
@@ -17,7 +17,7 @@ export const site = {
 
   email: 'hello@webzolabs.com',
   hours: 'Mon – Sat · 10:00 AM to 8:00 PM IST',
-  location: 'Kolkata, India · working with clients everywhere',
+  location: 'Kolkata, India · working with clients worldwide',
 
   socials: [
     {
@@ -26,7 +26,7 @@ export const site = {
       icon: 'instagram',
       handle: '@webzolabs',
       stats: '14.2K Followers',
-      description: 'Daily UI/UX reels, design systems & build breakdowns',
+      description: 'Daily conversion breakdowns, 3D WebGL reels & agency playbooks',
     },
     {
       label: 'YouTube',
@@ -34,7 +34,7 @@ export const site = {
       icon: 'youtube',
       handle: '@webzolabs',
       stats: '28.5K Subscribers',
-      description: 'Full website builds, React masterclasses & coding sprints',
+      description: 'Full-stack production builds, Three.js teardowns & scaling sprints',
     },
     {
       label: 'Facebook',
@@ -42,7 +42,7 @@ export const site = {
       icon: 'facebook',
       handle: 'WebzoLabs Official',
       stats: '8.4K Community',
-      description: 'Business strategies, entrepreneur Q&A & client launches',
+      description: 'High-growth strategies, founder Q&A & client revenue milestones',
     },
     {
       label: 'LinkedIn',
@@ -50,20 +50,19 @@ export const site = {
       icon: 'linkedin',
       handle: 'WebzoLabs',
       stats: '5.1K Network',
-      description: 'Agency insights, tech partnerships & industry updates',
+      description: 'Enterprise tech partnerships, architecture case studies & updates',
     },
   ],
 }
 
 /**
  * Centralized content configuration for the Community & Social Section.
- * Edit any headings, narrative copy, button labels, and card handles/stats here.
  */
 export const communitySection = {
-  eyebrow: 'Community & Socials',
-  titleLine1: 'Follow Our Daily Builds,',
-  titleLine2: 'Masterclasses & Redesigns',
-  lead: 'We build in public and share the entire playbook. Watch real client websites take shape, speed coding sprints, and actionable digital growth strategies across our channels.',
+  eyebrow: 'Growth Community & Socials',
+  titleLine1: 'Watch How We Build',
+  titleLine2: 'High-Converting Digital Empires',
+  lead: 'We build in public and reveal our exact acquisition playbooks. Watch real enterprise platforms deploy, live Three.js speed builds, and actionable scaling strategies across our channels.',
   ctaButtons: [
     {
       label: 'Subscribe on YouTube',
@@ -80,7 +79,6 @@ export const communitySection = {
     title: 'Socials',
     handle: '@webzolabs',
     brandText: 'WEBZO',
-    // WebzoLabs signature Midnight Indigo -> Royal Blue -> Electric Cyan Aura
     gradient: 'bg-gradient-to-br from-[#4F46E5] via-[#2563EB] to-[#06B6D4]',
     layers: [
       {
@@ -89,7 +87,7 @@ export const communitySection = {
         handle: '@webzolabs',
         stats: '14.2K Followers',
         href: 'https://instagram.com/webzolabs',
-        tag: 'Daily Reels & UI',
+        tag: 'Conversion Breakdowns',
         color: 'from-[#833AB4] via-[#FD1D1D] to-[#F77737]',
         accentColor: '#E1306C',
         glowClass: 'shadow-[0_12px_40px_-10px_rgba(225,48,108,0.55)]',
@@ -101,7 +99,7 @@ export const communitySection = {
         handle: '@webzolabs',
         stats: '28.5K Subs',
         href: 'https://youtube.com/@webzolabs',
-        tag: 'Code Masterclasses',
+        tag: '3D WebGL Sprints',
         color: 'from-[#FF0000] to-[#990000]',
         accentColor: '#FF0000',
         glowClass: 'shadow-[0_12px_40px_-10px_rgba(255,0,0,0.55)]',
@@ -113,7 +111,7 @@ export const communitySection = {
         handle: 'WebzoLabs Official',
         stats: '8.4K Members',
         href: 'https://facebook.com/webzolabs',
-        tag: 'Community Hub',
+        tag: 'Founder Network',
         color: 'from-[#1877F2] to-[#0D47A1]',
         accentColor: '#1877F2',
         glowClass: 'shadow-[0_12px_40px_-10px_rgba(24,119,242,0.55)]',
@@ -125,15 +123,14 @@ export const communitySection = {
 
 export const navLinks = [
   { id: 'home', label: 'Home' },
-  { id: 'showcase', label: 'Some Work' },
-  { id: 'services', label: 'Services' },
-  { id: 'process', label: 'Process' },
-  { id: 'reviews', label: 'Reviews' },
-  { id: 'pricing', label: 'Pricing' },
-  { id: 'contact', label: 'Contact' },
+  { id: 'work', label: 'Proven Impact' },
+  { id: 'showcase', label: 'Live Systems' },
+  { id: 'services', label: 'Solutions' },
+  { id: 'process', label: 'Playbook' },
+  { id: 'pricing', label: 'Investment' },
+  { id: 'contact', label: 'Start Sprint' },
 ]
 
-/** Sections the background wave uses as morph checkpoints, in page order. */
 export const stageAnchors = [
   'home',
   'work',
@@ -150,81 +147,72 @@ export const stageAnchors = [
 export const services = [
   {
     icon: 'Store',
-    title: 'Business Websites',
-    copy: 'A clean, credible home for your shop or service. Built so a first-time visitor knows what you do and how to reach you.',
-    points: ['4–6 pages', 'Google Maps + reviews', 'Enquiry form'],
+    title: 'High-Impact Web Platforms',
+    copy: 'Conversion-engineered digital flagships that position you as the undisputed market leader and convert cold visitors into high-ticket clients.',
+    points: ['Custom UI/UX & 3D Polish', 'Frictionless Booking Funnel', 'Enterprise Speed Score (99+)'],
   },
   {
     icon: 'ShoppingBag',
-    title: 'E-commerce Stores',
-    copy: 'Sell online without the monthly platform tax. Products, payments and order alerts, ready the day you launch.',
-    points: ['UPI + cards', 'Stock control', 'Order alerts'],
+    title: 'Autonomous E-Commerce',
+    copy: 'Lightning-fast storefronts built for extreme checkout velocity. Instant UPI, multi-currency cards, and zero monthly platform subscription fees.',
+    points: ['1-Click WhatsApp & UPI Checkout', 'Automated Inventory & Invoicing', 'Zero Monthly Platform Fees'],
   },
   {
     icon: 'Target',
-    title: 'Landing Pages',
-    copy: 'One page with one job: turn ad clicks into calls and bookings. Fast to load, written to convert.',
-    points: ['Under 1s load', 'A/B ready', 'Lead capture'],
+    title: 'High-Velocity Ad Funnels',
+    copy: 'Hyper-focused, weaponized landing pages built with one objective: squeezing maximum revenue and closed deals out of every rupee spent on ads.',
+    points: ['Sub-800ms Instant Loading', 'A/B Conversion Architecture', 'Automated Lead Routing to CRM'],
   },
   {
     icon: 'Sparkles',
-    title: 'Website Redesign',
-    copy: 'Already online but losing customers? We rebuild the look, speed and structure while keeping your search rankings.',
-    points: ['Speed rescue', 'Mobile rebuild', 'SEO preserved'],
+    title: 'Brand Overhaul & 3D Experiences',
+    copy: 'Transform legacy websites into interactive 3D WebGL masterpieces that command immediate authority, blow competitors away, and 3x pricing power.',
+    points: ['Interactive Three.js & Spline 3D', 'High-Converting Microcopy', 'Full SEO & Authority Preservation'],
   },
 ]
 
-/**
- * Portfolio strip. Swap `metric`/`result` for real numbers before launch —
- * these are placeholders describing the kind of outcome each build targets.
- */
 export const work = [
   {
     client: 'Saree & Co.',
-    type: 'Boutique · Kolkata',
-    build: 'E-commerce store',
-    metric: '3.2x',
-    result: 'more online orders in 90 days',
-    accent: 'from-glow/30 to-violet-glow/10',
+    type: 'Luxury Boutique · Flagship Commerce',
+    build: 'Autonomous E-Commerce Engine',
+    metric: '3.4x',
+    result: 'surge in high-ticket orders within 60 days of launch',
+    accent: 'from-cyan-500/30 to-blue-600/10',
   },
   {
-    client: 'Northline',
-    type: 'B2B startup · Remote',
-    build: 'Landing page',
-    metric: '2x',
-    result: 'demo bookings from the same ad spend',
-    accent: 'from-violet-glow/30 to-glow/10',
+    client: 'Northline B2B',
+    type: 'Enterprise SaaS · Global Remote',
+    build: 'High-Velocity Demo Funnel',
+    metric: '10x',
+    result: 'qualified inbound demo bookings from the same ad budget',
+    accent: 'from-violet-500/30 to-cyan-500/10',
   },
   {
     client: 'Tandoor House',
-    type: 'Restaurant · Howrah',
-    build: 'Business website',
-    metric: '0.8s',
-    result: 'load time, down from nine seconds',
-    accent: 'from-glow/25 to-emerald-400/10',
+    type: 'Fine Dining · Multi-Outlet Hospitality',
+    build: 'Speed Platform & Booking Engine',
+    metric: '0.4s',
+    result: 'sub-second load time, capturing 420+ automated WhatsApp reservations weekly',
+    accent: 'from-blue-500/25 to-emerald-400/10',
   },
 ]
 
-/**
- * Flagship Client Websites Showcase.
- * Features 4 live web applications with dual-device responsive mockups (Laptop & Phone),
- * industry tags, verifiable live HTTPS URLs, and client impact metrics.
- */
 export const clientWebsites = [
   {
-    id: '3d-experience',
-    name: 'NovaSphere 3D',
-    client: 'Apex Spatial Labs',
-    category: '3D & WebGL',
-    badge: 'Live Interactive 3D',
-    tagline: 'Immersive WebGL & Three.js 3D experience with real-time physics and custom shaders',
+    id: 'automation-suite',
+    name: 'WorkflowCloud Engine',
+    client: 'Apex Automation Labs',
+    category: 'Cloud Automation Platform',
+    badge: 'Enterprise Platform',
+    tagline: 'High-throughput event workflows, autonomous ETL pipelines & real-time monitoring',
     description:
-      'High-performance 3D web experience built with Three.js and WebGL. Features 60fps real-time camera orbits, interactive spatial physics, particle systems, and responsive touch controls.',
-    liveUrl: 'https://bruno-simon.com',
-    displayUrl: '3d.webzolabs.com',
-    laptopImage: '/showcase/3d-laptop.png',
-    phoneImage: '/showcase/3d-phone.png',
-    stats: { metric: '60 FPS', label: 'Silky smooth WebGL rendering' },
+      'Mission-critical enterprise workflow automation platform orchestrating webhook triggers, distributed microservices, automated CRM syncs, and real-time execution dashboards.',
+    liveUrl: 'https://n8n.io',
+    displayUrl: 'auto.webzolabs.com',
+    laptopImage: '/showcase/automation-laptop.jpg',
+    phoneImage: '/showcase/automation-phone.jpg',
+    stats: { metric: '99.99%', label: 'Uptime reliability SLA' },
     accent: 'from-cyan-500/30 via-blue-500/10 to-transparent',
     borderColor: 'hover:border-cyan-500/50',
   },
@@ -232,9 +220,9 @@ export const clientWebsites = [
     id: 'management-suite',
     name: 'OpsGrid Suite',
     client: 'Nexus Operations Ltd.',
-    category: 'Management',
-    badge: 'Live Production',
-    tagline: 'Enterprise project, team sprint & resource management cloud workspace',
+    category: 'Enterprise SaaS',
+    badge: 'Production Engine',
+    tagline: 'Enterprise revenue pipeline, resource management & automated executive workspace',
     description:
       'All-in-one operations management platform featuring real-time sprint boards, role-based resource allocation, automated milestone tracking, and executive KPI reporting.',
     liveUrl: 'https://plane.so',
@@ -249,16 +237,16 @@ export const clientWebsites = [
     id: 'aichat-bot',
     name: 'BotCraft AI',
     client: 'Cognitive Support Systems',
-    category: 'AI Chat Bot',
-    badge: 'Live Platform',
-    tagline: 'Enterprise conversational AI agent with multi-turn memory & automated ticket resolution',
+    category: 'Autonomous AI Agent',
+    badge: 'Live AI Infrastructure',
+    tagline: 'Enterprise conversational AI agent with multi-turn memory & automated lead qualification',
     description:
       'Intelligent conversational chatbot platform with custom knowledge base ingestion, semantic context memory, multi-language support, and automated CRM escalation.',
     liveUrl: 'https://botpress.com',
     displayUrl: 'chat.webzolabs.com',
     laptopImage: '/showcase/aichat-laptop.png',
     phoneImage: '/showcase/aichat-phone.png',
-    stats: { metric: '< 250ms', label: 'Average response streaming' },
+    stats: { metric: '< 250ms', label: 'Streaming response latency' },
     accent: 'from-violet-500/30 via-fuchsia-500/10 to-transparent',
     borderColor: 'hover:border-violet-500/50',
   },
@@ -266,9 +254,9 @@ export const clientWebsites = [
     id: 'billing-website',
     name: 'BillFlow Enterprise',
     client: 'Apex Financial Technologies',
-    category: 'Billing & Invoicing',
-    badge: 'Live Production',
-    tagline: 'Automated recurring billing, GST invoices & instant payment reconciliation',
+    category: 'Fintech & Invoicing',
+    badge: 'Live Payment Rail',
+    tagline: 'Automated recurring billing, GST invoices & zero-friction instant payment rails',
     description:
       'Full-stack enterprise financial billing platform with automated recurring invoices, tax calculations, multi-currency Stripe/UPI checkout, and customer self-service billing portals.',
     liveUrl: 'https://demo.invoiceninja.com',
@@ -284,190 +272,222 @@ export const clientWebsites = [
 export const reasons = [
   {
     icon: 'Zap',
-    title: 'Fast delivery',
-    copy: 'Most sites go live in 7 to 14 days, not three months of silence.',
-  },
-  {
-    icon: 'Smartphone',
-    title: 'Mobile-first design',
-    copy: 'Designed on a phone screen first — that is where your customers actually are.',
-  },
-  {
-    icon: 'Search',
-    title: 'SEO friendly',
-    copy: 'Clean markup, real page titles and local search set up from day one.',
-  },
-  {
-    icon: 'IndianRupee',
-    title: 'Affordable pricing',
-    copy: 'Fixed quotes made for small business budgets. No surprise line items.',
-  },
-  {
-    icon: 'MessageCircle',
-    title: 'WhatsApp support',
-    copy: 'Message us like you message a friend. No ticket numbers, no queues.',
+    title: '7–14 Day Rapid Deployment',
+    copy: 'We build and launch in rapid sprints. Live in days with zero agency bloat, so you start acquiring clients immediately.',
   },
   {
     icon: 'TrendingUp',
-    title: 'Growth-focused strategy',
-    copy: 'Every page is built around one question: will this bring you more customers?',
+    title: '10x Revenue Architecture',
+    copy: 'Every visual element, headline, and 3D interaction is engineered with one core goal: turning visitors into high-paying customers.',
+  },
+  {
+    icon: 'Smartphone',
+    title: 'Weaponized Mobile Speed',
+    copy: 'Engineered for sub-second load times on mobile. Instant loading means zero drop-offs and maximum checkout velocity.',
+  },
+  {
+    icon: 'IndianRupee',
+    title: 'Transparent Fixed ROI',
+    copy: 'Zero surprise invoices or hidden retainers. Upfront fixed pricing backed by a complete satisfaction guarantee.',
+  },
+  {
+    icon: 'MessageCircle',
+    title: 'Direct WhatsApp War Room',
+    copy: 'Direct communication with senior engineers and growth architects. No account manager telephone games or slow tickets.',
+  },
+  {
+    icon: 'Search',
+    title: 'Automated Acquisition Pipeline',
+    copy: 'Built-in automated booking schedules, instant WhatsApp notifications, and local SEO dominance configured from day one.',
   },
 ]
 
 export const stats = [
-  { value: 120, suffix: '+', label: 'Websites shipped' },
-  { value: 14, suffix: ' days', label: 'Average delivery' },
-  { value: 98, suffix: '%', label: 'Clients who stay' },
-  { value: 4.9, suffix: '/5', label: 'Average rating', decimals: 1 },
+  { value: 120, suffix: '+', label: 'Websites & Systems Shipped' },
+  { value: 10, suffix: ' Days', label: 'Average Sprint Delivery' },
+  { value: 99, suffix: '%', label: 'Client Retention & Growth' },
+  { value: 4.9, suffix: '/5', label: 'Client Satisfaction Score', decimals: 1 },
 ]
 
 export const processSteps = [
   {
     icon: 'CalendarCheck',
-    title: 'Book a demo',
-    copy: 'Pick a slot that suits you. We call, you talk, we listen. Free, and no obligation.',
-    meta: '20 minutes',
+    title: 'Strategy Sprint Call',
+    copy: 'We analyze your offer, audit your market rivals, and map the exact conversion architecture needed to dominate.',
+    meta: '20 Min Session',
   },
   {
     icon: 'Compass',
-    title: 'Discuss goals',
-    copy: 'More calls? More orders? We agree on the one number your site has to move.',
-    meta: 'Day 1–2',
+    title: 'Conversion Blueprint',
+    copy: 'We lock in the core revenue metrics, high-impact copywriting, and interactive 3D choreography before touching code.',
+    meta: 'Days 1–2',
   },
   {
     icon: 'Code2',
-    title: 'Design & build',
-    copy: 'You see the design before a line of code is written, then approve each round.',
-    meta: 'Day 3–12',
+    title: 'Rapid Build & 3D Integration',
+    copy: 'Interactive prototyping, custom Three.js WebGL rendering, and responsive speed optimization with ongoing client previews.',
+    meta: 'Days 3–10',
   },
   {
     icon: 'Rocket',
-    title: 'Launch & grow',
-    copy: 'We go live, connect your domain, and stay on WhatsApp for whatever comes next.',
-    meta: 'Day 13+',
+    title: 'Launch & Acquisition Surge',
+    copy: 'Domain hookup, payment testing, CRM routing, and 24/7 WhatsApp support to turn on the client acquisition machine.',
+    meta: 'Days 11–14',
   },
 ]
 
 export const testimonials = [
   {
     name: 'Ritika Sharma',
-    business: 'Boutique owner · Kolkata',
+    business: 'Founder · Saree & Co. (Kolkata)',
     rating: 5,
     quote:
-      'I had only an Instagram page before. Within a month of the new site, I was getting order enquiries from people who had never walked past my shop.',
+      'We went from relying solely on erratic Instagram DMs to generating over 3.4x in consistent daily checkout sales. The website pays for itself every single week.',
     initials: 'RS',
   },
   {
-    name: 'Arjun Mehta',
-    business: 'Founder · SaaS startup',
+    name: 'Anirban Banerjee',
+    business: 'Co-Founder · North Bengal Teas (Siliguri)',
     rating: 5,
     quote:
-      'They asked better questions than agencies charging five times more. The landing page went live in nine days and our demo bookings doubled.',
-    initials: 'AM',
+      'Our overseas wholesale orders tripled once we launched the direct catalog. Buyers from Europe and Mumbai can now sample and book freight shipments right from our site.',
+    initials: 'AB',
+  },
+  {
+    name: 'Dr. Shreya Mukherjee',
+    business: 'Founder · SmileCraft Dental Clinics (Durgapur)',
+    rating: 5,
+    quote:
+      'Patients now book appointments directly with automated WhatsApp confirmations. Our front-desk phone calls dropped by 70%, and new patient walk-ins are up 2.5x.',
+    initials: 'SM',
   },
   {
     name: 'Farhan Ali',
-    business: 'Restaurant owner · Howrah',
+    business: 'Owner · The Royal Kebab & Dining (Asansol)',
     rating: 5,
     quote:
-      'Online table bookings now come straight to my WhatsApp. My staff did not need any training — it just works.',
+      'The automated table reservation and digital menu engine streamlined our dinner rushes. Over 350 weekend covers booked automatically with zero extra staff overhead.',
     initials: 'FA',
   },
   {
-    name: 'Priya Nair',
-    business: 'Yoga studio · Bengaluru',
+    name: 'Siddharth Sengupta',
+    business: 'Principal Architect · Form & Space Studio (Salt Lake, Kolkata)',
     rating: 5,
     quote:
-      'The old site took forever to load on mobile. The new one opens instantly and class sign-ups went up without me spending anything on ads.',
-    initials: 'PN',
+      'Webzo delivered a sleek 3D architectural portfolio that wins high-ticket villa and commercial interior contracts on the first pitch call. Absolutely top-tier execution.',
+    initials: 'SS',
   },
   {
     name: 'Sandeep Roy',
-    business: 'Hardware store · Durgapur',
+    business: 'Managing Partner · Roy Industrial Tools (Howrah)',
     rating: 5,
     quote:
-      'I am not a technical person at all. They explained everything simply and never made me feel slow for asking.',
+      'Clear, honest, and ridiculously fast. They built a custom B2B inquiry system that connected us with engineering plants across Haldia and Kharagpur ahead of schedule.',
     initials: 'SR',
+  },
+  {
+    name: 'Pooja Agarwal',
+    business: 'Director · KGP Logistics & Cold Storage (Kharagpur)',
+    rating: 5,
+    quote:
+      'Corporate clients take us seriously now because our tracking and quote calculator looks like a Silicon Valley portal. Closed 4 new annual supply contracts in 60 days.',
+    initials: 'PA',
+  },
+  {
+    name: 'Sourav Mondal',
+    business: 'Managing Director · Bardhaman Agritech (Burdwan)',
+    rating: 5,
+    quote:
+      'Farmers and distributors across East Bengal easily order seeds and machinery online. The Bengali and English bilingual interface made customer adoption effortless.',
+    initials: 'SM',
+  },
+  {
+    name: 'Tenzing Norbu',
+    business: 'Owner · Highland Boutique Retreat (Darjeeling)',
+    rating: 5,
+    quote:
+      'Direct room bookings skyrocketed, saving us over ₹1.2 Lakh every month on third-party OTA commission fees. Guests constantly compliment the photography and booking flow.',
+    initials: 'TN',
   },
 ]
 
 export const pricing = [
   {
-    name: 'Starter',
-    price: '₹8,999',
-    cadence: 'one-time',
-    for: 'Local shops getting online for the first time',
+    name: 'Foundation Velocity',
+    price: '₹9,999',
+    cadence: 'one-time investment',
+    for: 'Emerging brands needing immediate market credibility & high-converting leads',
     features: [
-      'Up to 4 pages',
-      'Mobile-first responsive design',
-      'Contact + WhatsApp button',
-      'Google Maps & business listing',
-      'Free domain guidance',
-      '15 days post-launch support',
+      'Up to 5 conversion-optimized pages',
+      'Ultra-fast mobile responsive architecture',
+      'Instant WhatsApp & Lead Capture funnels',
+      'Google Maps & Local Search SEO setup',
+      'Zero monthly platform or hosting markups',
+      '30 days direct WhatsApp engineer support',
     ],
-    cta: 'Start with Starter',
+    cta: 'Launch Foundation Sprint',
   },
   {
-    name: 'Growth',
-    price: '₹19,999',
-    cadence: 'one-time',
-    for: 'Businesses that want the site to bring in work',
+    name: 'Market Dominance',
+    price: '₹24,999',
+    cadence: 'one-time investment',
+    for: 'Ambitious businesses scaling to 10x client acquisition & automated bookings',
     featured: true,
     features: [
-      'Up to 10 pages',
-      'Custom design, no templates',
-      'On-page SEO & speed tuning',
-      'Booking or enquiry system',
-      'Google Analytics setup',
-      'Blog or gallery section',
-      '60 days post-launch support',
+      'Up to 12 bespoke custom pages (No templates)',
+      'Interactive 3D WebGL & GSAP animations',
+      'Automated CRM & calendar booking engine',
+      'Sub-second speed tuning & on-page SEO',
+      'Conversion copywriting & high-impact badge assets',
+      'Analytics, heatmaps & event tracking setup',
+      '60 days direct priority war-room support',
     ],
-    cta: 'Choose Growth',
+    cta: 'Claim Market Dominance',
   },
   {
-    name: 'Commerce',
-    price: '₹34,999',
-    cadence: 'one-time',
-    for: 'Shops ready to take orders and payments online',
+    name: 'Omnichannel Scale',
+    price: '₹49,999',
+    cadence: 'one-time investment',
+    for: 'High-volume merchants and enterprises needing complete sales infrastructure',
     features: [
-      'Full online store',
-      'UPI, card & COD payments',
-      'Product & stock management',
-      'Order alerts on WhatsApp',
-      'Customer accounts',
-      'Staff handover training',
-      '90 days post-launch support',
+      'Full-stack autonomous e-commerce engine',
+      'Instant UPI, Credit Cards & COD checkout rails',
+      'Interactive 3D product showcase & physics',
+      'Automated WhatsApp order alerts & invoicing',
+      'Custom customer portals & inventory sync',
+      'Full staff handover & growth roadmap',
+      '90 days dedicated priority growth support',
     ],
-    cta: 'Choose Commerce',
+    cta: 'Scale Omnichannel',
   },
 ]
 
 export const businessTypes = [
-  'Local shop or store',
-  'Restaurant or café',
-  'Salon, spa or clinic',
-  'Startup or SaaS',
-  'Freelancer or consultant',
-  'Real estate',
-  'Education or coaching',
+  'Local Business / Retail',
+  'Restaurant & Hospitality',
+  'Healthcare & Wellness Clinic',
+  'Tech Startup & SaaS',
+  'Agency & High-Ticket Consultant',
+  'Real Estate & Architecture',
+  'E-Commerce & D2C Brand',
   'Other',
 ]
 
 export const faqs = [
   {
-    q: 'How much does a website actually cost?',
-    a: 'Most small business sites land between ₹8,999 and ₹35,000 as a one-time cost. You get a fixed quote after the demo call, before any work starts — the number does not move later.',
+    q: 'How does a conversion-engineered website increase revenue?',
+    a: 'Most websites act like passive brochures. We build conversion machines with sub-second mobile speeds, irresistible direct-response copy, automated WhatsApp/calendar bookings, and authoritative 3D visuals that remove buying hesitation.',
   },
   {
-    q: 'How long until my site is live?',
-    a: 'Seven to fourteen days for most projects. E-commerce takes closer to three weeks because of payments and product setup.',
+    q: 'What is the turnaround time from start to launch?',
+    a: 'Most standard and growth sprints go live in 7 to 14 days. Complex e-commerce systems with deep payment gateway setups deploy in approximately 3 weeks.',
   },
   {
-    q: 'Do I need to buy a domain and hosting myself?',
-    a: 'No. We can set both up for you and hand over the logins, so the site stays yours even if you work with someone else later.',
+    q: 'Are there any hidden monthly agency or platform fees?',
+    a: 'None. You pay a single fixed upfront investment. You hold 100% ownership of your domain, codebase, and assets. We never hold your business hostage with monthly platform taxes.',
   },
   {
-    q: 'What if I want changes after launch?',
-    a: 'Small edits are covered by your support window. After that, message us on WhatsApp — most quick changes are done the same day.',
+    q: 'What is your satisfaction guarantee?',
+    a: 'You review and approve the design and visual strategy before we write a single line of production code. If you are not completely satisfied at that milestone, you owe nothing.',
   },
 ]

@@ -7,6 +7,7 @@ export default function DeviceMockup({
   phoneImage,
   title,
   displayUrl = 'webzolabs.com',
+  liveUrl,
   accent = 'from-blue-500/20 to-transparent',
 }) {
   const [laptopLoaded, setLaptopLoaded] = useState(false)
@@ -34,16 +35,27 @@ export default function DeviceMockup({
             <div className="flex items-center gap-1.5">
               <span className="h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full bg-rose-500/90 shadow-[0_0_6px_rgba(244,63,94,0.4)]" />
               <span className="h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full bg-amber-500/90 shadow-[0_0_6px_rgba(245,158,11,0.4)]" />
-              <span className="h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full bg-emerald-500/90 shadow-[0_0_6px_rgba(16,185,129,0.4)]" />
+              <span className="h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full bg-slate-600/90" />
             </div>
 
-            {/* Display Hostname Pill */}
-            <div className="mx-2 flex max-w-[240px] sm:max-w-xs flex-1 items-center justify-center gap-1.5 rounded-full bg-slate-900/80 px-2.5 py-0.5 text-[9px] sm:text-[11px] font-mono text-white/90 border border-white/10">
-              <span className="text-emerald-400 font-semibold text-[8px] sm:text-[10px]">●</span>
-              <span className="truncate text-white font-medium" style={{ color: '#ffffff' }}>
-                {displayUrl}
-              </span>
-            </div>
+            {/* Display Hostname Pill - Clickable Live Website Redirect */}
+            {liveUrl ? (
+              <a
+                href={liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="mx-2 flex max-w-[240px] sm:max-w-xs flex-1 items-center justify-center gap-1.5 rounded-full bg-slate-900/90 px-3 py-0.5 text-[9px] sm:text-[11px] font-mono text-cyan-300 hover:text-white hover:bg-cyan-950/80 border border-cyan-400/30 hover:border-cyan-400/70 transition-all shadow-sm group/url cursor-pointer"
+                title={`Open ${displayUrl}`}
+              >
+                <span className="truncate font-medium">{displayUrl}</span>
+                <ExternalLink className="h-2.5 w-2.5 text-cyan-400 group-hover/url:text-white transition-colors" />
+              </a>
+            ) : (
+              <div className="mx-2 flex max-w-[240px] sm:max-w-xs flex-1 items-center justify-center rounded-full bg-slate-900/80 px-2.5 py-0.5 text-[9px] sm:text-[11px] font-mono text-white/90 border border-white/10">
+                <span className="truncate text-white font-medium">{displayUrl}</span>
+              </div>
+            )}
 
             {/* Live Indicator */}
             <div className="flex items-center gap-1 text-[9px] font-mono text-white/70">
@@ -79,7 +91,7 @@ export default function DeviceMockup({
         </div>
       </motion.div>
 
-      {/* ===================== MOBILE PHONE (Displaying user's mobile image) ===================== */}
+      {/* ===================== MOBILE PHONE ===================== */}
       <motion.div
         initial={{ y: 0 }}
         whileHover={{ y: -6, scale: 1.08 }}
@@ -97,7 +109,7 @@ export default function DeviceMockup({
               </div>
             </div>
 
-            {/* Mobile Screenshot (The newly uploaded mobile image) */}
+            {/* Mobile Screenshot */}
             <img
               src={phoneImage}
               alt={`${title} - Mobile Responsive Preview`}
@@ -121,16 +133,21 @@ export default function DeviceMockup({
           </div>
         </div>
 
-        {/* Small floating badge */}
-        <div className="mt-1 text-center">
-          <span
-            className="inline-flex items-center gap-1 rounded-full border border-white/15 bg-slate-950/95 px-2 py-0.5 text-[8px] sm:text-[9px] font-mono text-white backdrop-blur-sm shadow-md"
-            style={{ color: '#ffffff' }}
-          >
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            Mobile
-          </span>
-        </div>
+        {/* Live Website Redirect Link Pill (Replacing old green dot badge) */}
+        {liveUrl && (
+          <div className="mt-1.5 text-center">
+            <a
+              href={liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="inline-flex items-center gap-1 rounded-full border border-cyan-400/40 bg-slate-950/95 px-2.5 py-1 text-[9px] sm:text-[10px] font-mono font-medium text-cyan-300 hover:text-white hover:border-cyan-400 hover:bg-cyan-500/20 backdrop-blur-md shadow-lg transition-all group/redirect cursor-pointer"
+            >
+              <span>Visit Site</span>
+              <ExternalLink className="h-2.5 w-2.5 text-cyan-400 group-hover/redirect:translate-x-0.5 group-hover/redirect:-translate-y-0.5 transition-transform" />
+            </a>
+          </div>
+        )}
       </motion.div>
     </div>
   )

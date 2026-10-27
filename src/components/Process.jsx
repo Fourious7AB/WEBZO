@@ -18,7 +18,7 @@ export default function Process({ onBookDemo }) {
 
   return (
     <section id="process" className="relative z-10 section-pad overflow-hidden">
-      {/* Rocket: growth and launch, anchored to the left edge. */}
+      {/* Rocket indicator anchored to the left */}
       <motion.div
         aria-hidden="true"
         initial={{ opacity: 0, x: -30 }}
@@ -28,20 +28,20 @@ export default function Process({ onBookDemo }) {
         className="pointer-events-none absolute left-0 top-1/2 hidden -translate-y-1/2 xl:block"
       >
         <div className="relative animate-float">
-          <div className="absolute inset-0 rounded-full bg-glow/25 blur-3xl" />
-          <div className="glass relative grid h-24 w-24 place-items-center rounded-3xl">
-            <Rocket className="h-9 w-9 -rotate-45 text-glow-soft" />
+          <div className="absolute inset-0 rounded-full bg-cyan-500/20 blur-3xl" />
+          <div className="glass relative grid h-24 w-24 place-items-center rounded-3xl border-cyan-400/30">
+            <Rocket className="h-9 w-9 -rotate-45 text-cyan-400" />
           </div>
           {/* Exhaust trail */}
-          <div className="absolute left-1/2 top-full h-28 w-px -translate-x-1/2 bg-gradient-to-b from-glow/60 to-transparent" />
+          <div className="absolute left-1/2 top-full h-28 w-px -translate-x-1/2 bg-gradient-to-b from-cyan-400/60 to-transparent" />
         </div>
       </motion.div>
 
-      <div className="container">
+      <div className="container relative z-10">
         <SectionHeading
-          eyebrow="How it works"
-          title="Four steps from first call to live website"
-          lead="No jargon, no long silences. You always know which step we are on and what happens next."
+          eyebrow="The 14-Day Sprint Playbook"
+          title="Four Steps from Strategy Call to Market Dominance"
+          lead="Zero bureaucracy, zero radio silence. You have direct war-room visibility at every milestone until launch."
         />
 
         <div ref={trackRef} className="relative mt-16">
@@ -52,11 +52,11 @@ export default function Process({ onBookDemo }) {
           >
             <motion.div
               style={{ scaleY: lineScale }}
-              className="h-full w-full origin-top bg-gradient-to-b from-glow via-violet-glow to-transparent lg:hidden"
+              className="h-full w-full origin-top bg-gradient-to-b from-cyan-400 via-blue-500 to-transparent lg:hidden"
             />
             <motion.div
               style={{ scaleX: lineScale }}
-              className="hidden h-full w-full origin-left bg-gradient-to-r from-glow via-violet-glow to-transparent lg:block"
+              className="hidden h-full w-full origin-left bg-gradient-to-r from-cyan-400 via-blue-500 to-transparent lg:block"
             />
           </div>
 
@@ -76,25 +76,23 @@ export default function Process({ onBookDemo }) {
                   }}
                   className="group relative flex gap-5 lg:block lg:pr-4 will-change-transform"
                 >
-                  <span className="relative z-10 grid h-14 w-14 shrink-0 place-items-center rounded-full bg-surface ring-1 ring-white/10 transition-all duration-500 ease-premium group-hover:ring-glow/50 group-hover:shadow-glow">
-                    <Icon className="h-5 w-5 text-glow-soft" aria-hidden="true" />
+                  <span className="relative z-10 grid h-14 w-14 shrink-0 place-items-center rounded-full bg-slate-900 border border-cyan-400/30 ring-1 ring-white/10 transition-all duration-500 ease-premium group-hover:border-cyan-400 group-hover:shadow-[0_0_20px_rgba(6,182,212,0.4)]">
+                    <Icon className="h-5 w-5 text-cyan-300" aria-hidden="true" />
                   </span>
 
-                  <div className="lg:mt-6">
-                    <div className="flex items-center gap-3">
-                      <span className="font-mono text-xs font-semibold tracking-wider text-glow-soft">
-                        {String(i + 1).padStart(2, '0')}
+                  <div className="flex-1 lg:mt-6">
+                    <div className="flex items-center gap-2">
+                      <span className="font-mono text-xs font-semibold text-cyan-400">
+                        0{i + 1}
                       </span>
-                      <span className="h-px w-4 bg-white/15" aria-hidden="true" />
-                      <span className="font-mono text-[11px] font-semibold uppercase tracking-wider text-slate-400">
-                        {step.meta}
-                      </span>
+                      <span className="h-1 w-1 rounded-full bg-slate-600" />
+                      <span className="font-mono text-xs text-slate-400">{step.meta}</span>
                     </div>
 
-                    <h3 className="mt-3 text-base sm:text-lg font-bold sm:font-semibold tracking-tight text-white">
+                    <h3 className="mt-2 text-base sm:text-lg font-semibold tracking-tight text-white">
                       {step.title}
                     </h3>
-                    <p className="mt-2 max-w-sm text-xs sm:text-sm leading-relaxed text-slate-300/85">
+                    <p className="mt-1.5 text-xs sm:text-sm leading-relaxed text-slate-300/85">
                       {step.copy}
                     </p>
                   </div>
@@ -104,12 +102,18 @@ export default function Process({ onBookDemo }) {
           </ol>
         </div>
 
-        <div className="mt-14 flex justify-center">
-          <Button size="lg" onClick={onBookDemo}>
-            <CalendarCheck className="h-4 w-4" aria-hidden="true" />
-            Start at step one
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="mt-14 flex justify-center"
+        >
+          <Button size="lg" onClick={onBookDemo} className="shadow-[0_0_25px_rgba(6,182,212,0.4)]">
+            <CalendarCheck className="h-4 w-4 text-cyan-300" />
+            Claim Strategy Sprint Call
           </Button>
-        </div>
+        </motion.div>
       </div>
     </section>
   )

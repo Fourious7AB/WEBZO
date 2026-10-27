@@ -4,7 +4,9 @@ import {
   ArrowLeft,
   ArrowRight,
   CalendarDays,
+  Check,
   CheckCircle2,
+  ChevronDown,
   Clock,
   ExternalLink,
   X,
@@ -30,15 +32,17 @@ const EMPTY = {
   phone: '',
   email: '',
   businessType: '',
+  customBusinessType: '',
   message: '',
 }
 
 const inputClass =
   'w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-white placeholder:text-muted/60 transition-colors duration-300 focus:border-glow/60 focus:bg-white/[0.05] focus:outline-none'
 
-function Field({ label, error, hint, children, required }) {
+function Field({ label, error, hint, children, required, as = 'label' }) {
+  const Component = as
   return (
-    <label className="block">
+    <Component className="block">
       <span className="mb-1.5 flex items-baseline justify-between gap-2">
         <span className="text-xs font-medium text-white/85">
           {label}
@@ -52,7 +56,98 @@ function Field({ label, error, hint, children, required }) {
           {error}
         </span>
       )}
-    </label>
+    </Component>
+  )
+}
+
+function BusinessTypeDropdown({ value, onChange, error, options }) {
+  const [isOpen, setIsOpen] = useState(false)
+  const containerRef = useRef(null)
+
+  useEffect(() => {
+    const handleOutsideClick = (e) => {
+      if (containerRef.current && !containerRef.current.contains(e.target)) {
+        setIsOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleOutsideClick)
+    document.addEventListener('touchstart', handleOutsideClick)
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick)
+      document.removeEventListener('touchstart', handleOutsideClick)
+    }
+  }, [])
+
+  return (
+    <div className="relative w-full" ref={containerRef}>
+      <button
+        type="button"
+        onClick={() => setIsOpen((prev) => !prev)}
+        aria-haspopup="listbox"
+        aria-expanded={isOpen}
+        className={cn(
+          'flex w-full items-center justify-between rounded-xl border bg-white/[0.03] px-4 py-3 text-left text-sm transition-all duration-200 outline-none cursor-pointer',
+          error
+            ? 'border-rose-400/80 ring-1 ring-rose-400/30'
+            : 'border-white/10 hover:border-white/20',
+          isOpen
+            ? 'border-glow/60 bg-white/[0.06] shadow-[0_0_15px_rgba(0,240,255,0.15)]'
+            : '',
+          value ? 'text-white font-medium' : 'text-muted/60'
+        )}
+      >
+        <span className="truncate pr-2">
+          {value || 'Select your business type...'}
+        </span>
+        <ChevronDown
+          className={cn(
+            'h-4 w-4 shrink-0 text-muted transition-transform duration-200',
+            isOpen && 'rotate-180 text-glow-soft'
+          )}
+          aria-hidden="true"
+        />
+      </button>
+
+      {/* Styled Dropdown Menu Matching Theme */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.ul
+            initial={{ opacity: 0, y: -4, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -4, scale: 0.98 }}
+            transition={{ duration: 0.15, ease: 'easeOut' }}
+            role="listbox"
+            className="absolute left-0 right-0 top-full z-50 mt-1.5 max-h-56 overflow-y-auto rounded-xl border border-white/15 bg-slate-950/95 p-1.5 shadow-2xl backdrop-blur-2xl overscroll-contain focus:outline-none scrollbar-thin"
+          >
+            {options.map((option) => {
+              const isSelected = value === option
+              return (
+                <li
+                  key={option}
+                  role="option"
+                  aria-selected={isSelected}
+                  onClick={() => {
+                    onChange(option)
+                    setIsOpen(false)
+                  }}
+                  className={cn(
+                    'flex cursor-pointer items-center justify-between rounded-lg px-3 py-2.5 text-xs sm:text-sm transition-colors select-none',
+                    isSelected
+                      ? 'bg-gradient-to-r from-glow/20 to-violet-glow/20 text-white font-medium border border-cyan-400/30'
+                      : 'text-white/80 hover:bg-white/10 hover:text-white'
+                  )}
+                >
+                  <span className="truncate pr-2">{option}</span>
+                  {isSelected && (
+                    <Check className="h-4 w-4 shrink-0 text-cyan-400" aria-hidden="true" />
+                  )}
+                </li>
+              )
+            })}
+          </motion.ul>
+        )}
+      </AnimatePresence>
+    </div>
   )
 }
 
@@ -138,13 +233,29 @@ export default function BookingModal({ open, onClose, seed }) {
     setErrors((prev) => (prev[key] ? { ...prev, [key]: undefined } : prev))
   }
 
+  const handleBusinessTypeChange = (val) => {
+    setForm((f) => ({ ...f, businessType: val }))
+    setErrors((prev) => ({
+      ...prev,
+      businessType: undefined,
+      customBusinessType: undefined,
+    }))
+  }
+
+  const isOther =
+    form.businessType === 'Other' || form.businessType.startsWith('Other')
+
   const validate = () => {
     const next = {}
     if (form.name.trim().length < 2) next.name = 'Please tell us your name.'
     if (!validatePhone(form.phone))
       next.phone = 'Enter a 10-digit Indian mobile number.'
     if (!validateEmail(form.email)) next.email = 'That email address looks off.'
-    if (!form.businessType) next.businessType = 'Pick the closest match.'
+    if (!form.businessType) {
+      next.businessType = 'Please select your business type.'
+    } else if (isOther && !form.customBusinessType.trim()) {
+      next.customBusinessType = 'Please write your specific business type.'
+    }
     setErrors(next)
     return Object.keys(next).length === 0
   }
@@ -153,7 +264,17 @@ export default function BookingModal({ open, onClose, seed }) {
     e.preventDefault()
     if (!validate()) return
 
-    const url = buildWhatsAppUrl({ ...form, date, time })
+    const resolvedBusiness =
+      isOther && form.customBusinessType.trim()
+        ? form.customBusinessType.trim()
+        : form.businessType
+
+    const url = buildWhatsAppUrl({
+      ...form,
+      businessType: resolvedBusiness,
+      date,
+      time,
+    })
     setSentUrl(url)
     setStep(2)
     // Opened after state so the success screen is already behind the tab switch.
@@ -188,18 +309,18 @@ export default function BookingModal({ open, onClose, seed }) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.985 }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="relative flex max-h-[92svh] w-full max-w-2xl flex-col overflow-hidden rounded-t-3xl border border-white/10 bg-surface shadow-2xl outline-none sm:rounded-3xl"
+            className="relative flex h-[88dvh] max-h-[92dvh] sm:h-auto sm:max-h-[85vh] w-full max-w-2xl flex-col overflow-hidden rounded-t-3xl border border-white/10 bg-surface shadow-2xl outline-none sm:rounded-3xl"
           >
             {/* Header */}
-            <div className="flex items-start justify-between gap-4 border-b border-white/8 px-6 py-5">
+            <div className="flex shrink-0 items-start justify-between gap-4 border-b border-white/8 px-5 py-4 sm:px-6 sm:py-5">
               <div>
                 <h2
                   id="booking-title"
-                  className="font-display text-lg font-semibold tracking-tight"
+                  className="font-display text-base sm:text-lg font-semibold tracking-tight"
                 >
                   {step === 2 ? 'Booking ready to send' : 'Book your free demo'}
                 </h2>
-                <p className="mt-1 text-sm text-muted">
+                <p className="mt-1 text-xs sm:text-sm text-muted">
                   {step === 0 && 'Pick a day and a time that suits you.'}
                   {step === 1 && 'Last part — how should we reach you?'}
                   {step === 2 && 'One tap in WhatsApp and it is with us.'}
@@ -210,7 +331,7 @@ export default function BookingModal({ open, onClose, seed }) {
                 type="button"
                 onClick={onClose}
                 aria-label="Close booking"
-                className="-mr-2 grid h-10 w-10 shrink-0 place-items-center rounded-full text-muted transition-colors hover:bg-white/5 hover:text-white"
+                className="-mr-1 sm:-mr-2 grid h-9 w-9 sm:h-10 sm:w-10 shrink-0 place-items-center rounded-full text-muted transition-colors hover:bg-white/5 hover:text-white"
               >
                 <X className="h-5 w-5" />
               </button>
@@ -218,7 +339,7 @@ export default function BookingModal({ open, onClose, seed }) {
 
             {/* Step rail */}
             {step < 2 && (
-              <div className="flex gap-1.5 px-6 pt-4" aria-hidden="true">
+              <div className="flex shrink-0 gap-1.5 px-5 sm:px-6 pt-3 sm:pt-4" aria-hidden="true">
                 {[0, 1].map((s) => (
                   <span
                     key={s}
@@ -233,10 +354,10 @@ export default function BookingModal({ open, onClose, seed }) {
               </div>
             )}
 
-            <div className="flex-1 overflow-y-auto px-6 py-6">
+            <div className="flex-1 min-h-0 overflow-y-auto px-5 py-4 sm:px-6 sm:py-6 overscroll-contain">
               {/* Step 1 — when */}
               {step === 0 && (
-                <div className="grid gap-8 sm:grid-cols-[minmax(0,1fr)_190px]">
+                <div className="grid gap-6 sm:gap-8 sm:grid-cols-[minmax(0,1fr)_190px]">
                   <Calendar value={date} onChange={setDate} />
 
                   <div className="min-w-0">
@@ -251,7 +372,7 @@ export default function BookingModal({ open, onClose, seed }) {
                       </p>
                     ) : (
                       <div
-                        className="grid max-h-64 grid-cols-2 gap-2 overflow-y-auto pr-1 sm:grid-cols-1"
+                        className="grid max-h-56 sm:max-h-64 grid-cols-2 gap-2 overflow-y-auto pr-1 sm:grid-cols-1"
                         role="group"
                         aria-label="Available times"
                       >
@@ -334,20 +455,46 @@ export default function BookingModal({ open, onClose, seed }) {
                     />
                   </Field>
 
-                  <Field label="Business type" required error={errors.businessType}>
-                    <select
-                      className={cn(inputClass, 'appearance-none bg-surface')}
+                  {/* Business type dropdown */}
+                  <Field as="div" label="Business type" required error={errors.businessType}>
+                    <BusinessTypeDropdown
                       value={form.businessType}
-                      onChange={set('businessType')}
-                    >
-                      <option value="">Select one</option>
-                      {businessTypes.map((type) => (
-                        <option key={type} value={type}>
-                          {type}
-                        </option>
-                      ))}
-                    </select>
+                      onChange={handleBusinessTypeChange}
+                      error={errors.businessType}
+                      options={businessTypes}
+                    />
                   </Field>
+
+                  {/* If user selects Other, show "Write your specific business type *" section with NO logo */}
+                  <AnimatePresence>
+                    {isOther && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0, y: -4 }}
+                        animate={{ opacity: 1, height: 'auto', y: 0 }}
+                        exit={{ opacity: 0, height: 0, y: -4 }}
+                        transition={{ duration: 0.2 }}
+                        className="overflow-hidden"
+                      >
+                        <Field
+                          label="Write your specific business type"
+                          required
+                          error={errors.customBusinessType}
+                        >
+                          <input
+                            className={cn(
+                              inputClass,
+                              'border-cyan-400/40 bg-white/[0.04] focus:border-glow focus:bg-white/[0.06] text-white',
+                              errors.customBusinessType && 'border-rose-400 ring-1 ring-rose-400/30'
+                            )}
+                            value={form.customBusinessType}
+                            onChange={set('customBusinessType')}
+                            placeholder="e.g. Handloom Saree Store, Dental Clinic, Cafe, Cloud Kitchen..."
+                            autoFocus
+                          />
+                        </Field>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
 
                   <Field label="Anything we should know?" hint="optional">
                     <textarea
@@ -401,16 +548,16 @@ export default function BookingModal({ open, onClose, seed }) {
 
             {/* Footer actions */}
             {step < 2 && (
-              <div className="flex items-center justify-between gap-3 border-t border-white/8 bg-base/40 px-6 py-4">
+              <div className="sticky bottom-0 z-20 flex shrink-0 items-center justify-between gap-3 border-t border-white/10 bg-surface/95 backdrop-blur-md px-5 sm:px-6 py-3.5 sm:py-4 pb-[max(0.875rem,env(safe-area-inset-bottom))]">
                 {step === 0 ? (
                   <p className="text-xs text-muted">
-                    Free, 20 minutes, no obligation.
+                    Free, 20 min • No obligation
                   </p>
                 ) : (
                   <button
                     type="button"
                     onClick={() => setStep(0)}
-                    className="inline-flex items-center gap-1.5 text-sm text-muted transition-colors hover:text-white"
+                    className="inline-flex shrink-0 items-center gap-1.5 text-sm text-muted transition-colors hover:text-white"
                   >
                     <ArrowLeft className="h-4 w-4" />
                     Back
@@ -418,12 +565,12 @@ export default function BookingModal({ open, onClose, seed }) {
                 )}
 
                 {step === 0 ? (
-                  <Button onClick={() => setStep(1)} disabled={!canContinue}>
+                  <Button onClick={() => setStep(1)} disabled={!canContinue} className="shrink-0 font-semibold">
                     Continue
                     <ArrowRight className="h-4 w-4" aria-hidden="true" />
                   </Button>
                 ) : (
-                  <Button type="submit" form="booking-form">
+                  <Button type="submit" form="booking-form" className="shrink-0 font-semibold">
                     Send on WhatsApp
                     <ArrowRight className="h-4 w-4" aria-hidden="true" />
                   </Button>

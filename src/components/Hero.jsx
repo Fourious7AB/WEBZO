@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { motion } from 'framer-motion'
-import { ArrowUpRight, CalendarDays } from 'lucide-react'
+import { ArrowUpRight, CalendarDays, Zap } from 'lucide-react'
 import LampContainer from '@/components/ui/lamp'
 import Button from '@/components/ui/Button'
 import { scrollToId } from '@/lib/utils'
@@ -25,9 +25,9 @@ const containerVariants = {
 }
 
 const proof = [
-  '120+ websites shipped',
-  'Live in 14 days',
-  'Support on WhatsApp',
+  '120+ High-Impact Systems Shipped',
+  '7–14 Day Rapid Launch',
+  'Direct WhatsApp War Room',
 ]
 
 export default function Hero({ onBookDemo, month, period }) {
@@ -41,7 +41,7 @@ export default function Hero({ onBookDemo, month, period }) {
   }, [period, month])
 
   return (
-    <section id="home" className="relative overflow-hidden">
+    <section id="home" className="relative overflow-hidden pt-4 pb-12 sm:pb-16 md:pb-20">
       <LampContainer>
         <motion.div
           initial="hidden"
@@ -51,15 +51,12 @@ export default function Hero({ onBookDemo, month, period }) {
         >
           <motion.span
             variants={rise}
-            className="mb-6 sm:mb-8 mt-3 sm:mt-0 inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-950/20 px-3.5 py-1.5 font-sans text-[11px] sm:text-xs font-medium tracking-normal sm:tracking-wide text-slate-200 shadow-[0_0_20px_-3px_rgba(6,182,212,0.25)] backdrop-blur-xl max-w-[95vw]"
+            className="mb-6 sm:mb-8 mt-3 sm:mt-0 inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-950/30 px-3.5 py-1.5 font-sans text-[11px] sm:text-xs font-medium tracking-normal sm:tracking-wide text-slate-200 backdrop-blur-xl max-w-[95vw]"
           >
-            <span className="relative flex h-2 w-2 shrink-0">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400/80 duration-1000" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-400 shadow-[0_0_8px_#38bdf8]" />
-            </span>
+            <Zap className="h-3.5 w-3.5 text-cyan-400 shrink-0" aria-hidden="true" />
             <span className="text-slate-200">
-              Taking new projects for{' '}
-              <span className="font-semibold text-cyan-300 tracking-normal">
+              Accepting 3 new sprint clients for{' '}
+              <span className="font-semibold text-white tracking-normal">
                 {currentPeriod}
               </span>
             </span>
@@ -67,20 +64,17 @@ export default function Hero({ onBookDemo, month, period }) {
 
           <motion.h1
             variants={rise}
-            className="max-w-xs sm:max-w-xl md:max-w-2xl lg:max-w-3xl text-balance text-[2rem] font-bold leading-[1.18] tracking-tight sm:text-4xl sm:leading-[1.14] md:text-5xl md:leading-[1.1] lg:text-[4.25rem]"
+            className="max-w-xs sm:max-w-xl md:max-w-3xl lg:max-w-4xl text-balance text-[2.1rem] font-bold leading-[1.15] tracking-tight sm:text-4xl sm:leading-[1.12] md:text-5xl md:leading-[1.08] lg:text-[4.5rem]"
           >
-            <span className="text-gradient">Turn small businesses into</span>{' '}
-            <span className="text-gradient-brand animate-shimmer">big brands</span>
+            <span className="text-gradient">Websites Engineered to</span>{' '}
+            <span className="text-gradient-brand animate-shimmer">10x Revenue & Scale</span>
           </motion.h1>
 
           <motion.p
             variants={rise}
-            className="mt-5 max-w-xl text-sm leading-relaxed text-white sm:text-base md:text-lg sm:mt-6"
-            style={{ color: '#ffffff' }}
+            className="mt-5 max-w-2xl text-sm leading-relaxed text-slate-200 sm:text-base md:text-lg sm:mt-6"
           >
-            WebzoLabs builds fast, modern and affordable websites that help local
-            businesses, startups and entrepreneurs grow their dreams and create
-            new opportunities.
+            WebzoLabs architects high-velocity web platforms, 3D WebGL experiences, and automated acquisition engines that convert cold visitors into high-paying clients on autopilot.
           </motion.p>
 
           <motion.div
@@ -93,9 +87,9 @@ export default function Hero({ onBookDemo, month, period }) {
               transition={{ duration: 0.5, delay: 0.25, ease }}
               className="w-full sm:w-auto"
             >
-              <Button size="lg" onClick={onBookDemo} className="w-full sm:w-auto">
-                <CalendarDays className="h-4 w-4" aria-hidden="true" />
-                Book a demo
+              <Button size="lg" onClick={onBookDemo} className="w-full sm:w-auto shadow-[0_0_25px_rgba(6,182,212,0.4)]">
+                <CalendarDays className="h-4 w-4 text-cyan-300" aria-hidden="true" />
+                Claim Strategy Sprint
               </Button>
             </motion.div>
             <motion.div
@@ -110,7 +104,7 @@ export default function Hero({ onBookDemo, month, period }) {
                 onClick={() => scrollToId('work')}
                 className="w-full sm:w-auto"
               >
-                View our work
+                Explore Proven Impact
                 <ArrowUpRight
                   className="h-4 w-4 transition-transform duration-300 ease-premium group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                   aria-hidden="true"
@@ -125,7 +119,7 @@ export default function Hero({ onBookDemo, month, period }) {
           >
             {proof.map((item) => (
               <li key={item} className="flex items-center gap-2">
-                <span className="h-1 w-1 rounded-full bg-glow" aria-hidden="true" />
+                <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 shadow-[0_0_6px_#22d3ee]" aria-hidden="true" />
                 {item}
               </li>
             ))}

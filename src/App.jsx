@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react'
 import AuroraField from '@/components/AuroraField'
+import SplineCanvas from '@/components/SplineCanvas'
 import Navbar from '@/components/Navbar'
 import Hero from '@/components/Hero'
 import Work from '@/components/Work'
@@ -36,6 +37,7 @@ export default function App() {
   return (
     <>
       <AuroraField />
+      <SplineCanvas />
 
       <div className="relative z-10">
         <Navbar onBookDemo={handleBookDemo} />
@@ -63,4 +65,3 @@ export default function App() {
     </>
   )
 }
-

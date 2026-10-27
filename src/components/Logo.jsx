@@ -27,7 +27,6 @@ export default function Logo({ className, showFull = true }) {
           strokeLinecap="round"
           strokeLinejoin="round"
         />
-        <circle cx="49" cy="21" r="3.5" fill="#8B5CF6" />
       </svg>
 
       {showFull && (

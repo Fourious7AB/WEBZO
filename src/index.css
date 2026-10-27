@@ -33,7 +33,7 @@ body,
   }
 
   body {
-    background-color: #050816;
+    background-color: #02040a;
     color: #ffffff;
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
@@ -55,13 +55,13 @@ body,
 
   /* Visible, on-brand keyboard focus everywhere. */
   :focus-visible {
-    outline: 2px solid #60a5fa;
+    outline: 2px solid #00f0ff;
     outline-offset: 3px;
     border-radius: 6px;
   }
 
   ::selection {
-    background: rgba(59, 130, 246, 0.35);
+    background: rgba(0, 240, 255, 0.35);
     color: #fff;
   }
 
@@ -71,45 +71,75 @@ body,
     height: 10px;
   }
   ::-webkit-scrollbar-track {
-    background: #050816;
+    background: #02040a;
   }
   ::-webkit-scrollbar-thumb {
     background: #1e293b;
     border-radius: 999px;
-    border: 2px solid #050816;
+    border: 2px solid #02040a;
   }
   ::-webkit-scrollbar-thumb:hover {
     background: #334155;
   }
 
-  /* Native date/time pickers need a light icon on dark surfaces. */
-  input[type='date']::-webkit-calendar-picker-indicator,
-  input[type='time']::-webkit-calendar-picker-indicator {
-    filter: invert(1) opacity(0.55);
-    cursor: pointer;
+  /* Total Eradication of "Built with Spline" watermark & badges */
+  #spline-logo,
+  #spline-viewer-logo,
+  a[href*="spline.design"],
+  a[href*="spline.com"],
+  a[href*="spline"],
+  [class*="spline-watermark"],
+  [class*="spline-logo"],
+  [class*="spline"],
+  div[data-spline-logo],
+  div[style*="spline"],
+  canvas + a,
+  canvas ~ a,
+  canvas + div,
+  canvas ~ div {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    position: absolute !important;
+    clip: rect(0, 0, 0, 0) !important;
+    clip-path: inset(100%) !important;
+    width: 0 !important;
+    height: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
   }
 }
 
 @layer components {
-  .eyebrow {
-    @apply font-mono text-[11px] font-semibold uppercase tracking-wider sm:tracking-widest text-glow-soft;
-  }
-
+  /* Ultra-dark glass panel with high-clarity border */
   .glass {
     background: linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.055) 0%,
-      rgba(255, 255, 255, 0.018) 100%
+      rgba(255, 255, 255, 0.04) 0%,
+      rgba(255, 255, 255, 0.01) 100%
     );
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border: 1px solid rgba(148, 163, 184, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
   }
 
-  /* Gradient hairline that only lights up on hover/focus. */
+  .glass-elevated {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.08) 0%,
+      rgba(255, 255, 255, 0.02) 100%
+    );
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.06) inset,
+      0 30px 80px -40px rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  /* Thin on-brand halo border for interactive surfaces */
   .glow-border {
     position: relative;
-    isolation: isolate;
   }
   .glow-border::before {
     content: '';
@@ -117,95 +147,63 @@ body,
     inset: 0;
     border-radius: inherit;
     padding: 1px;
-    background: linear-gradient(140deg, #3b82f6, #8b5cf6 55%, transparent 80%);
-    -webkit-mask:
-      linear-gradient(#000 0 0) content-box,
-      linear-gradient(#000 0 0);
+    background: linear-gradient(
+      135deg,
+      rgba(0, 240, 255, 0.35) 0%,
+      rgba(37, 99, 235, 0.25) 50%,
+      transparent 100%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
-    opacity: 0;
-    transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1);
     pointer-events: none;
-    z-index: 1;
-  }
-  .glow-border:hover::before,
-  .glow-border:focus-within::before {
-    opacity: 1;
   }
 
+  /* Shimmer gradient headline */
   .text-gradient {
-    @apply bg-gradient-to-br from-white via-slate-200 to-slate-400 bg-clip-text text-transparent;
-  }
-
-  .text-gradient-brand {
-    background: linear-gradient(120deg, #60a5fa 0%, #a78bfa 55%, #60a5fa 100%);
-    background-size: 200% auto;
+    background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
 
+  .text-gradient-brand {
+    background: linear-gradient(135deg, #00f0ff 0%, #38bdf8 40%, #60a5fa 70%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .text-gradient-silver {
+    background: linear-gradient(180deg, #ffffff 20%, #94a3b8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Section vertical padding */
   .section-pad {
-    @apply py-24 md:py-32;
+    @apply py-20 md:py-28 lg:py-32;
+  }
+
+  /* Eyebrow badge / label */
+  .eyebrow {
+    @apply font-mono text-2xs uppercase tracking-eyebrow text-cyan-400 font-semibold;
   }
 }
 
 @layer utilities {
-  .mask-lamp-top {
-    -webkit-mask-image: linear-gradient(to top, white, transparent);
-    mask-image: linear-gradient(to top, white, transparent);
-  }
-  .mask-lamp-right {
-    -webkit-mask-image: linear-gradient(to right, white, transparent);
-    mask-image: linear-gradient(to right, white, transparent);
-  }
-  .mask-lamp-left {
-    -webkit-mask-image: linear-gradient(to left, white, transparent);
-    mask-image: linear-gradient(to left, white, transparent);
-  }
-  .mask-fade-b {
-    -webkit-mask-image: linear-gradient(to bottom, #000 60%, transparent 100%);
-    mask-image: linear-gradient(to bottom, #000 60%, transparent 100%);
-  }
-  .mask-fade-x {
-    -webkit-mask-image: linear-gradient(
-      to right,
-      transparent,
-      #000 12%,
-      #000 88%,
-      transparent
-    );
-    mask-image: linear-gradient(
-      to right,
-      transparent,
-      #000 12%,
-      #000 88%,
-      transparent
-    );
-  }
   .tnum {
     font-variant-numeric: tabular-nums;
   }
-  .smooth-gpu {
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    perspective: 1000px;
-  }
+
+  /* GPU-promoted scroll layers for 120 FPS lag-free scrolling */
   .will-change-transform {
     will-change: transform;
   }
-}
 
-/* Honour the OS-level motion preference across the whole site. */
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto !important;
-  }
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
+  .transform-gpu {
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
   }
 }

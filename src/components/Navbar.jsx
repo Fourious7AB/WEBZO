@@ -18,7 +18,7 @@ export default function Navbar({ onBookDemo }) {
   useLockBodyScroll(open)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24)
+    const onScroll = () => setScrolled(window.scrollY > 20)
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
@@ -32,24 +32,23 @@ export default function Navbar({ onBookDemo }) {
 
   const go = (id) => {
     setOpen(false)
-    // Let the drawer start closing before we move the page.
-    setTimeout(() => scrollToId(id), 60)
+    scrollToId(id)
   }
 
   return (
     <>
       <a
         href="#main"
-        className="sr-only left-4 top-4 z-[100] rounded-full bg-glow px-4 py-2 text-sm font-medium text-white focus:not-sr-only focus:fixed"
+        className="sr-only left-4 top-4 z-[100] rounded-full bg-cyan-500 px-4 py-2 text-sm font-medium text-white focus:not-sr-only focus:fixed"
       >
         Skip to content
       </a>
 
       <header
         className={cn(
-          'fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-premium',
+          'fixed inset-x-0 top-0 z-50 transition-all duration-300 ease-in-out',
           scrolled
-            ? 'border-b border-white/10 bg-base/70 backdrop-blur-xl backdrop-saturate-150'
+            ? 'border-b border-white/10 bg-slate-950/85 backdrop-blur-2xl shadow-lg shadow-black/30'
             : 'border-b border-transparent bg-transparent'
         )}
         style={{ height: 'var(--nav-h)' }}
@@ -58,20 +57,21 @@ export default function Navbar({ onBookDemo }) {
           className="container flex h-full items-center justify-between gap-4"
           aria-label="Main"
         >
+          {/* Logo link */}
           <a
             href="#home"
             onClick={(e) => {
               e.preventDefault()
               go('home')
             }}
-            className="shrink-0 rounded-lg"
+            className="shrink-0 rounded-lg focus-visible:outline-none"
             aria-label={`${site.name} — home`}
           >
             <Logo />
           </a>
 
-          {/* Desktop links */}
-          <ul className="hidden items-center gap-1 xl:flex">
+          {/* Desktop & Tablet Links (visible from lg: 1024px and up) */}
+          <ul className="hidden items-center gap-0.5 lg:flex xl:gap-1">
             {navLinks.map((link) => {
               const isActive = active === link.id
               return (
@@ -84,15 +84,17 @@ export default function Navbar({ onBookDemo }) {
                     }}
                     aria-current={isActive ? 'true' : undefined}
                     className={cn(
-                      'relative inline-flex items-center rounded-full px-4 py-2 text-sm transition-colors duration-300',
-                      isActive ? 'text-white' : 'text-muted hover:text-white'
+                      'relative inline-flex items-center rounded-full px-3 py-1.5 text-[13px] font-medium transition-all duration-200 xl:px-4 xl:py-2 xl:text-sm',
+                      isActive
+                        ? 'text-white'
+                        : 'text-slate-300 hover:text-white hover:bg-white/[0.04]'
                     )}
                   >
                     {isActive && (
                       <motion.span
                         layoutId="nav-active"
                         transition={{ type: 'spring', stiffness: 380, damping: 32 }}
-                        className="absolute inset-0 -z-10 rounded-full bg-white/[0.07] ring-1 ring-white/10"
+                        className="absolute inset-0 -z-10 rounded-full bg-white/[0.08] ring-1 ring-white/15"
                       />
                     )}
                     {link.label}
@@ -102,27 +104,29 @@ export default function Navbar({ onBookDemo }) {
             })}
           </ul>
 
-          <div className="flex items-center gap-2">
+          {/* Right Action buttons */}
+          <div className="flex items-center gap-2 sm:gap-3">
             <a
               href={site.phoneHref}
-              className="hidden items-center gap-2 rounded-full px-3 py-2 text-sm text-muted transition-colors hover:text-white sm:inline-flex lg:hidden xl:inline-flex"
+              className="hidden items-center gap-2 rounded-full px-3 py-2 text-xs font-medium text-slate-300 transition-colors hover:text-white xl:inline-flex xl:text-sm"
             >
-              <Phone className="h-4 w-4" aria-hidden="true" />
-              <span className="hidden xl:inline">{site.phoneDisplay}</span>
+              <Phone className="h-4 w-4 text-cyan-400" aria-hidden="true" />
+              <span>{site.phoneDisplay}</span>
             </a>
 
-            <Button onClick={onBookDemo} className="hidden sm:inline-flex">
+            <Button onClick={onBookDemo} size="sm" className="hidden sm:inline-flex">
               <CalendarDays className="h-4 w-4" aria-hidden="true" />
               Book demo
             </Button>
 
+            {/* Mobile / Tablet Menu Trigger (hidden on lg and up) */}
             <button
               type="button"
               onClick={() => setOpen((v) => !v)}
               aria-expanded={open}
               aria-controls="mobile-menu"
               aria-label={open ? 'Close menu' : 'Open menu'}
-              className="grid h-11 w-11 place-items-center rounded-full text-white transition-colors hover:bg-white/5 lg:hidden"
+              className="grid h-10 w-10 place-items-center rounded-xl bg-white/[0.05] border border-white/10 text-white transition-all hover:bg-white/10 lg:hidden"
             >
               <Menu className="h-5 w-5" />
             </button>
@@ -130,7 +134,7 @@ export default function Navbar({ onBookDemo }) {
         </nav>
       </header>
 
-      {/* Mobile drawer */}
+      {/* Mobile Drawer */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -138,14 +142,14 @@ export default function Navbar({ onBookDemo }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
+            transition={{ duration: 0.2 }}
             className="fixed inset-0 z-[60] lg:hidden"
           >
             <button
               type="button"
               aria-label="Close menu"
               onClick={() => setOpen(false)}
-              className="absolute inset-0 h-full w-full cursor-default bg-base/80 backdrop-blur-md"
+              className="absolute inset-0 h-full w-full cursor-default bg-black/80 backdrop-blur-md"
             />
 
             <motion.div
@@ -153,11 +157,11 @@ export default function Navbar({ onBookDemo }) {
               role="dialog"
               aria-modal="true"
               aria-label="Site menu"
-              initial={{ y: '-6%', opacity: 0 }}
+              initial={{ y: '-10%', opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              exit={{ y: '-4%', opacity: 0 }}
-              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              className="absolute inset-x-0 top-0 max-h-[100svh] overflow-y-auto border-b border-white/10 bg-surface/95 px-5 pb-8 pt-4 shadow-2xl"
+              exit={{ y: '-10%', opacity: 0 }}
+              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+              className="absolute inset-x-0 top-0 max-h-[100svh] overflow-y-auto border-b border-white/10 bg-slate-950/95 px-6 pb-8 pt-5 shadow-2xl backdrop-blur-2xl"
             >
               <div className="flex items-center justify-between">
                 <Logo />
@@ -165,20 +169,20 @@ export default function Navbar({ onBookDemo }) {
                   type="button"
                   onClick={() => setOpen(false)}
                   aria-label="Close menu"
-                  className="grid h-11 w-11 place-items-center rounded-full text-white transition-colors hover:bg-white/5"
+                  className="grid h-10 w-10 place-items-center rounded-xl bg-white/[0.05] border border-white/10 text-white transition-colors hover:bg-white/10"
                   autoFocus
                 >
                   <X className="h-5 w-5" />
                 </button>
               </div>
 
-              <ul className="mt-6 flex flex-col">
+              <ul className="mt-6 flex flex-col divide-y divide-white/5">
                 {navLinks.map((link, i) => (
                   <motion.li
                     key={link.id}
-                    initial={{ opacity: 0, x: -14 }}
+                    initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.05 + i * 0.05, duration: 0.35 }}
+                    transition={{ delay: 0.03 * i, duration: 0.25 }}
                   >
                     <a
                       href={`#${link.id}`}
@@ -187,20 +191,13 @@ export default function Navbar({ onBookDemo }) {
                         go(link.id)
                       }}
                       className={cn(
-                        'flex items-center justify-between border-b border-white/5 py-4 text-lg transition-colors',
-                        active === link.id ? 'text-white' : 'text-muted'
+                        'flex items-center justify-between py-3.5 text-base font-medium transition-colors',
+                        active === link.id
+                          ? 'text-white font-semibold'
+                          : 'text-slate-300 hover:text-white'
                       )}
                     >
-                      {link.label}
-                      <span
-                        className={cn(
-                          'h-1.5 w-1.5 rounded-full transition-all',
-                          active === link.id
-                            ? 'bg-glow shadow-[0_0_12px_2px_rgba(59,130,246,0.8)]'
-                            : 'bg-white/15'
-                        )}
-                        aria-hidden="true"
-                      />
+                      <span>{link.label}</span>
                     </a>
                   </motion.li>
                 ))}
